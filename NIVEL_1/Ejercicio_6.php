@@ -7,19 +7,41 @@
 </head>
 <bodY>
 <?php
+
+    mordidasDiariasdeCharlie(); 
+
+
     function isBitten(): bool {
         return (rand(0,1) == 1) ? true : false;
     }
 
-    echo isBitten() ? "Charlie te va a morder" : "Charlie no te morderá";
-    echo "<br/>";
-    echo isBitten() ? "Charlie te va a morder" : "Charlie no te morderá";
-    echo "<br/>";
-    echo isBitten() ? "Charlie te va a morder" : "Charlie no te morderá";
-    echo "<br/>";
-    echo isBitten() ? "Charlie te va a morder" : "Charlie no te morderá";
-    echo "<br/>";
-    echo isBitten() ? "Charlie te va a morder" : "Charlie no te morderá";
+    function mordidasDiariasdeCharlie(): void {
+        $mordidas = 0;
+        echo "<h3>Cómo se portará hoy Charlie (estimación)?</h3>";
+        for ($i = 10; $i <= 22; $i += 2) {
+            echo "A las $i.00: ";
+            if (isBitten()) {
+                $mordidas++;
+                echo "Charlie te va a morder";
+            } else { 
+                echo "Charlie no te morderá";
+                }
+            echo "<br>";
+        }
+        $mensaje = "<br>Hoy Charlie te morderá $mordidas veces. ";
+
+        if ($mordidas < 3) {
+            $coment = "Qué perro tan juguetón.";
+            } elseif ($mordidas < 5) {
+                $coment = "Perrito malo.";
+            } else {
+                $coment = "Perro cabrón!";
+            }
+        echo $mensaje . $coment;
+    }
+
+      
+
 
 ?>
     

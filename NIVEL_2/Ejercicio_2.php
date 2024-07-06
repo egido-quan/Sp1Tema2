@@ -7,33 +7,35 @@
 </head>
 <bodY>
 <?php
+    const PRECIO_CHOCO = 1;
+    const PRECIO_CHICLE = 0.5;
+    const PRECIO_CARAMELO = 1.5;   
+    const CHOCO = "chocolates";
+    const CHICLE = "chicles";
+    const CARAMELO = "caramelos"; 
+    $arrProd = array("chocolates", "chicles", "caramelos");
+
     function compra(int $cantidad, string $producto): void {
         static $parcial = 0;
-        switch ($producto) {
-            case "chocolates":
-                $parcial += $cantidad;
-                echo $cantidad . " " . $producto . " = " . $cantidad . " euros<br/>";
-                break;
-            case "chicles":
-                $parcial += ($cantidad * 0.5);
-                echo $cantidad . " " . $producto . " = " . ($cantidad * 0.5) . " euros<br/>";
-                break;
-            case "caramelos":
-                $parcial += ($cantidad * 1.5);
-                echo $cantidad . " " . $producto . " = " . ($cantidad * 1.5) . " euros<br/>";
-                break;                
-        }        
+        $coste = 0;
+
+        $coste = match ($producto) {
+            CHOCO => $cantidad * PRECIO_CHOCO,
+            CHICLE => $cantidad * PRECIO_CHICLE,
+            CARAMELO => $cantidad * PRECIO_CARAMELO,
+        };
+        echo $cantidad . " " . $producto . " = " . $coste . " euros<br/>";
+        $parcial += $coste;  
         echo "Total acumulado: " . $parcial . " euros<br/>";
         echo"<br/>";
     }
-    
-    compra(4, "chocolates");
 
-    compra(5,"chicles");
+    for ($i = 0; $i < 10; $i++) {
+        $cant = rand(1, 10);
+        $prod = rand(0, 2);
+        compra ($cant, $arrProd[$prod]);
+    }
 
-    compra(3,"caramelos");
-
-    compra(6,"chicles");
 
 
 

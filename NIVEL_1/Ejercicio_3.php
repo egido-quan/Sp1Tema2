@@ -32,31 +32,26 @@
     echo "El doble de N es: " . (2 * $N) . "<br/>";
     echo "El resultado de X + Y + M + N es " . ($X + $Y + $M + $N) . "<br/>";
 
-    function calculadora(float $x, float $y, string $operador): float {
-        switch ($operador) {
-            case "+":
-                return $x + $y;
-                break;
-            case "-":
-                return $x - $y;
-                break;
-            case "*":
-                return $x * $y;
-                break;
-            case "/":
-                return $x / $y;
-                break;
-        }
+
+    function calcular(float $x, float $y, string $operador): float {
+        return match ($operador) {
+            "+" => $x + $y,
+            "-" => $x - $y,
+            "*" => $x * $y,
+            "/" => $x / $y, 
+        };
     }
+
+    echo"<br><h3>Con la función calcular(x, y, operador)</h3>";
     $operador = "*";
     $s = 7;
     $t = 9;
-    echo "<br/>" . "El resultado de " . $s . $operador . $t . " es " . calculadora($s, $t, $operador);
+    echo "El resultado de " . $s . " $operador "  . $t . " es " . calcular($s, $t, $operador);
     
     $operador = "-";
     $s = 58.89;
     $t = 23.4;
-    echo "<br/>" . "El resultado de " . $s . $operador . $t . " es " . calculadora($s, $t, $operador);
+    echo "<br/>" . "El resultado de " . $s . " $operador " . $t . " es " . calcular($s, $t, $operador);
 
 
 ?>
