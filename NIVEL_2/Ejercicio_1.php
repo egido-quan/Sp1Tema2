@@ -7,13 +7,13 @@
 </head>
 <bodY>
 <?php
-    echo "Simulación de 10 llamadas:<br><br>";
+    echo "Simulación de 10 llamadas entre 1 y 60 min:<br><br>";
     for ($i = 0; $i < 10; $i++) {
-        muestraLlamada();
+        $tiempo = rand(1,60); //Calculamos el tiempo de la llamada aleatoriamente entre 1 y 60 min
+        muestraLlamada($tiempo);
     }
     
-    function muestraLlamada(): void {
-    $tiempo = rand(1,60); //Calculamos el tiempo de la llamada aleatoriamente
+    function muestraLlamada($tiempo): void {
     $mensaje = "Tu llamada de " . $tiempo ." minutos cuesta ";
     if (aPagar($tiempo) < 100) {
         echo $mensaje . aPagar($tiempo) . " cts<br>";
